@@ -1,0 +1,67 @@
+:root {
+    --primary: #ff00ff;
+}
+
+* {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+button {
+    font-size: 1em;
+}
+
+body {
+    text-align: center;
+    font-size: 1.3em;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+h1, h2, h3 {
+    color: var(--primary);
+}
+
+@keyframes color-change {
+    0% { color: #1abc9c; }
+    10% {  color: #2ecc71; }
+    20% {  color: #3498db; }
+    30% {  color: #9b59b6; }
+    40% {  color: #f1c40f; }
+    50% {  color: #e67e22; }
+    60% {  color: #e74c3c; }
+    70% {  color: #f39c12; }
+    80% {  color: #d35400; }
+    90% {  color: #ff00ff; }
+    100% { color: #c0392b; }
+}
+
+h1 {
+    animation: color-change 7s infinite;
+}
+
+/* Makes the animation pause on hover */
+.marquee:hover {
+    animation-play-state: paused;
+}
+
+/* The animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* media query to enable animation for only those who want it */
+@media (prefers-reduced-motion: no-preference) {
+    .marquee {
+        animation: marquee 15s linear infinite;
+    }
+}
+
+a:hover {
+    animation: color-change 3s infinite;
+}

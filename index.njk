@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/assets/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+    <title>chaos.website</title>
+
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
+
+    <meta property="og:title" content="chaosweb.space" />
+    <meta property="description" content="Weird things! Wacky things! Fun things!" />
+    <meta property="og:description" content="Weird things! Wacky things! Fun things!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://chaosweb.space" />
+    <meta property="og:image" content="https://chaosweb.space/assets/preview.png">
+
+    <script src="https://cdn.usefathom.com/script.js" data-site="HSVIBTSK" defer></script>
+
+    <script>
+        sites = {{ sites | outputJson | safe }}
+    </script>
+
+</head>
+    <body>
+
+        <h1>chaosweb.space</h1>
+        <h2 class="marquee">Weird things! Wacky things! Fun things!</h2>
+
+        <div style="text-align: center;">
+            <button onclick="shuffle();">shuffle sites</button>
+            <button onclick="randomSite();">jump to random site</button>
+        </div>
+
+        <div id="sites">
+            {%- for site in sites %}
+                <p><a href="{{ site.url}}">{{ site.name }}</a></p>
+            {% endfor %}
+        </div>
+
+        <button onclick="window.open('https://rknight.me')">robb made this</button>
+        <button onclick="window.open('https://github.com/rknightuk/chaosweb')">add a site</button>
+
+        <script>
+            (function() {
+                randomSite = () => {
+                    const random = sites.sort((a, b) => 0.5 - Math.random())[0]
+
+                    window.open(random.url)
+                }
+
+                shuffle = () => {
+                    const shuffledSites = sites.sort((a, b) => 0.5 - Math.random())
+                    const sitesEl = document.getElementById('sites')
+
+                    sitesEl.innerHTML = ''
+                    shuffledSites.map(s => {
+                        const p = document.createElement('p')
+                        const a = document.createElement('a')
+                        a.href = s.url
+                        a.innerHTML = s.name
+
+                        p.appendChild(a)
+                        sitesEl.append(p)
+                    })
+                }
+                shuffle()
+
+            })();
+        </script>
+
+    </body>
+</html>
