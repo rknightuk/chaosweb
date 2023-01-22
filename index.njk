@@ -34,19 +34,17 @@
         <h1>chaosweb.space</h1>
         <h2 class="marquee">Weird things! Wacky things! Fun things!</h2>
 
-        <div style="text-align: center;">
-            <button onclick="shuffle();">shuffle sites</button>
-            <button onclick="randomSite();">jump to random site</button>
-        </div>
+        <button onclick="shuffle();">shuffle sites</button>
+        <button onclick="randomSite();">jump to random site</button>
+        <br>
+        <button onclick="window.open('https://rknight.me')">robb made this</button>
+        <button onclick="window.open('https://github.com/rknightuk/chaosweb')">add a site</button>
 
         <div id="sites">
             {%- for site in sites %}
                 <p><a href="{{ site.url}}">{{ site.name }}</a></p>
             {% endfor %}
         </div>
-
-        <button onclick="window.open('https://rknight.me')">robb made this</button>
-        <button onclick="window.open('https://github.com/rknightuk/chaosweb')">add a site</button>
 
         <script>
             (function() {
